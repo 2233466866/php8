@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:plucky-20250402
+FROM ubuntu:plucky-20250402
 # 全局准备
 RUN echo 'Asia/Shanghai' > /etc/timezone;\
 echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky main restricted universe multiverse' >> /etc/apt/sources.list;\
@@ -205,7 +205,7 @@ make install;\
 chown -R www:www /usr/local/php8;\
 # 镜像清理
 rm -rf /root/php-8.4.6.tar.gz;\
-rm -rf /root/php-8.4.6;\
+rm -rf /root/php-8.4.6
 # 环境变量
 ENV PATH $PATH:/usr/local/php8/bin:/usr/local/php8/sbin
 # 创建卷
