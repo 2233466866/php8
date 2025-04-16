@@ -1,4 +1,4 @@
-FROM ubuntu:plucky-20250402
+FROM docker.io/library/ubuntu:plucky-20250402
 # 全局准备
 RUN echo 'Asia/Shanghai' > /etc/timezone;\
 echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky main restricted universe multiverse' >> /etc/apt/sources.list;\
