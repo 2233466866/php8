@@ -41,7 +41,9 @@ wget --no-check-certificate -c https://n.so1234.top/1centos/PHP/php8-fpm.conf -O
 wget --no-check-certificate -c https://n.so1234.top/1centos/PHP/www8.conf -O /usr/local/php8/etc/php-fpm.d/www.conf;\
 wget --no-check-certificate -c https://n.so1234.top/1centos/PHP/cacert.pem -O /usr/local/php8/lib/cacert.pem;\
 wget --no-check-certificate -c https://n.so1234.top/1centos/PHP/composer8 -O /usr/local/php8/bin/composer;\
+wget --no-check-certificate -c https://n.so1234.top/1centos/PHP/pecl8 -O /usr/local/php8/bin/pecl;\
 chmod -R 755 /usr/local/php8/bin/composer;\
+chmod -R 755 /usr/local/php8/bin/pecl;\
 # bcmath
 cd /root/php-8.4.6/ext/bcmath;\
 /usr/local/php8/bin/phpize;\
@@ -193,7 +195,6 @@ cd /root/php-8.4.6/ext/swoole-6.0.2;\
 --enable-swoole-curl \
 --enable-swoole-pgsql \
 --enable-thread-context \
---enable-swoole-thread \
 --enable-swoole-coro-time \
 --enable-swoole-sqlite \
 --enable-debug-log \
