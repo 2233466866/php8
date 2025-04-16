@@ -194,7 +194,6 @@ cd /root/php-8.4.6/ext/swoole-6.0.2;\
 --enable-swoole-dev \
 --enable-swoole-curl \
 --enable-swoole-pgsql \
---enable-thread-context \
 --enable-swoole-coro-time \
 --enable-swoole-sqlite \
 --enable-debug-log \
