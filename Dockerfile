@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:plucky-20250402
+FROM ubuntu:plucky-20250402
 # 全局准备
 RUN > /etc/apt/sources.list;\
 echo 'Asia/Shanghai' > /etc/timezone;\
@@ -205,11 +205,12 @@ useradd www;\
 chown -R www:www /usr/local/php8;\
 # 开机自启
 wget --no-check-certificate -c https://n.so1234.top/1centos/PHP/php8.service -O /etc/systemd/system/php8.service;\
-ln -s /etc/systemd/system/php8.service /etc/systemd/system/multi-user.target.wants/php8.service;\
+systemctl daemon-reload;\
+systemctl enable php8;\
 # 镜像清理
 rm -rf /root/php-8.4.6.tar.gz;\
 rm -rf /root/php-8.4.6
 # 环境变量
 ENV PATH $PATH:/usr/local/php8/bin:/usr/local/php8/sbin
 # 初始化
-CMD ["/usr/sbin/init"]
+CMD ["/usr/lib/systemd/systemd"]
