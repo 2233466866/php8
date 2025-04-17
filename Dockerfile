@@ -12,7 +12,7 @@ echo '# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky-backports mai
 echo '# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky-security main restricted universe multiverse' >> /etc/apt/sources.list;\
 apt update;\
 apt modernize-sources -y;\
-apt install -y vim git curl wget;\
+apt install -y vim git curl wget systemd;\
 apt install -y automake autoconf make cmake gcc-13 g++-13 build-essential;\
 apt install -y pkg-config libxml2-dev openssl libssl-dev libmemcached-dev libsqlite3-dev libpq-dev \
 libcares2 liburing-dev zip unzip libzip-dev zlib1g zlib1g-dev libcurl4-openssl-dev libonig-dev libpng-dev libgd-dev;\
@@ -203,10 +203,13 @@ make install;\
 # 权限修改
 useradd www;\
 chown -R www:www /usr/local/php8;\
+# 开机自启
+wget --no-check-certificate -c https://n.so1234.top/1centos/PHP/php8.service -O /etc/systemd/system/php8.service;\
+ln -s /etc/systemd/system/php8.service /etc/systemd/system/multi-user.target.wants/php8.service;\
 # 镜像清理
 rm -rf /root/php-8.4.6.tar.gz;\
 rm -rf /root/php-8.4.6
 # 环境变量
 ENV PATH $PATH:/usr/local/php8/bin:/usr/local/php8/sbin
 # 初始化
-CMD ["/usr/local/php8/sbin/php-fpm"]
+CMD ["/usr/sbin/init"]
