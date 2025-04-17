@@ -1,6 +1,7 @@
 FROM ubuntu:plucky-20250402
 # 全局准备
-RUN echo 'Asia/Shanghai' > /etc/timezone;\
+RUN > /etc/apt/sources.list;\
+echo 'Asia/Shanghai' > /etc/timezone;\
 echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky main restricted universe multiverse' >> /etc/apt/sources.list;\
 echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky-updates main restricted universe multiverse' >> /etc/apt/sources.list;\
 echo 'deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky-backports main restricted universe multiverse' >> /etc/apt/sources.list;\
@@ -13,11 +14,9 @@ apt update;\
 apt modernize-sources -y;\
 apt install -y vim git curl wget;\
 apt install -y automake autoconf make cmake gcc-13 g++-13 build-essential;\
-apt install -y pkg-config libxml2-dev openssl libssl-dev libmemcached-dev libsqlite3-dev libpq-dev libcares2 liburing-dev zip unzip libzip-dev zlib1g zlib1g-dev libcurl4-openssl-dev libonig-dev libpng-dev libgd-dev;\
-# 代码目录
-mkdir /www;\
-useradd www;\
-chown -R www:www /www;\
+apt install -y pkg-config libxml2-dev openssl libssl-dev libmemcached-dev libsqlite3-dev libpq-dev \
+libcares2 liburing-dev zip unzip libzip-dev zlib1g zlib1g-dev libcurl4-openssl-dev libonig-dev libpng-dev libgd-dev;\
+apt clean;\
 # 开始安装
 cd /root;\
 wget --no-check-certificate -c https://n.so1234.top/1centos/PHP/php-8.4.6.tar.gz;\
@@ -202,13 +201,12 @@ cd /root/php-8.4.6/ext/swoole-6.0.2;\
 make;\
 make install;\
 # 权限修改
+useradd www;\
 chown -R www:www /usr/local/php8;\
 # 镜像清理
 rm -rf /root/php-8.4.6.tar.gz;\
 rm -rf /root/php-8.4.6
 # 环境变量
 ENV PATH $PATH:/usr/local/php8/bin:/usr/local/php8/sbin
-# 创建卷
-VOLUME ["/www"]
 # 初始化
 CMD ["/usr/local/php8/sbin/php-fpm"]
