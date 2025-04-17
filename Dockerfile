@@ -1,4 +1,4 @@
-FROM ubuntu:plucky-20250402
+FROM docker.io/library/ubuntu:plucky-20250402
 # 全局准备
 RUN > /etc/apt/sources.list;\
 echo 'Asia/Shanghai' > /etc/timezone;\
